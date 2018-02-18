@@ -6,6 +6,16 @@
  * in the project's AndroidManifest.xml file.
  **/
 
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.TextView;
+
+import com.example.android.justjava.R;
+
+/** Testing the Git push **/
+
 package com.example.android.justjava;
 
 
