@@ -10,8 +10,10 @@ package com.example.android.justjava;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import com.example.android.justjava.R;
 import android.os.Bundle;
@@ -59,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
         int price = calculatePrice();
 
         /**
+         * Gets name input from EditText view
+         * assigns name to nameEditText
+         */
+        EditText name_Edit_Text = (EditText) findViewById(R.id.name_Edit_Text);
+        String nameEditText = name_Edit_Text.getText().toString();
+
+
+        /**
          * checks to see if whipped cream topping checkbox is checked
          * assigns true or false boolean value to hasWhippedCream
          */
@@ -72,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         CheckBox checkChocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
         boolean hasChocolate = checkChocolate.isChecked();
 
-        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate);
+        String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, nameEditText);
         displayMessage(priceMessage);
     }
 
@@ -106,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
      * @param price is the price of the order
      * @return priceMessage returns the order summary output to the program
      */
-    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate) {
-        String priceMessage = "Name: Kaptain Kunal";
+    private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, String nameText) {
+        String priceMessage = "Name: " + nameText;
         priceMessage += "\nAdd whipped cream? " + addWhippedCream;
         priceMessage += "\nAdd chocolate? " + addChocolate;
         priceMessage += "\nQuantity : " + quantity;
