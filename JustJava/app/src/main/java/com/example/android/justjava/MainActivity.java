@@ -8,6 +8,7 @@
 
 package com.example.android.justjava;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -22,6 +23,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.NumberFormat;
 
 /**
@@ -94,7 +97,23 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the + button is clicked.
      */
     public void increment(View view) {
-        quantity = quantity + 1;
+
+        // Creates a String to use in the Toast message that informs upper limit of quantity
+        String upperLimit = "Max quantity allowed is 100";
+        // Creates an int to set Toast length
+        int duration = Toast.LENGTH_SHORT;
+        // Gets application context
+        Context context = getApplicationContext();
+
+        // ensures the quantity value does not go above 100
+        if (quantity < 100) {
+            quantity = quantity + 1;
+        } else {
+            Toast toast = Toast.makeText(context, upperLimit, duration);
+            toast.show();
+            return;
+        }
+
         displayQuantity(quantity);
     }
 
@@ -102,7 +121,23 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the - button is clicked.
      */
     public void decrement(View view) {
-        quantity = quantity - 1;
+
+        // Creates a String to use in the Toast message that informs lower limit of quantity
+        String lowerLimit = "Lowest quantity allowed is 0";
+        // Creates an int to set Toast length
+        int duration = Toast.LENGTH_SHORT;
+        // Gets application context
+        Context context = getApplicationContext();
+
+        // ensures the quantity value does not go below 0
+        if (quantity > 0) {
+            quantity = quantity - 1;
+        } else {
+            Toast toast = Toast.makeText(context, lowerLimit, duration);
+            toast.show();
+            return;
+        }
+
         displayQuantity(quantity);
     }
 
