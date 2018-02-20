@@ -1,3 +1,45 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Just Java</string>
+
+    <!-- Hint text for the name field -->
+    <string name="hintName">Name</string>
+
+    <!-- Header text for the list of toppings [CHAR LIMIT=20] -->
+    <string name="toppingsText">Toppings</string>
+
+    <!-- Whipped cream topping -->
+    <string name="whippedCreamText">Whipped Cream</string>
+
+    <!-- Chocolate topping -->
+    <string name="chocolateText">Chocolate</string>
+
+    <!-- Quantity text header [CHAR LIMIT=20] -->
+    <string name="quantityText">Quantity</string>
+
+    <!-- Order button text -->
+    <string name="orderText">ORDER</string>
+
+    <!-- Max quantity allowed toast message -->
+    <string name="maxQuantityToast">Max quantity allowed is 100</string>
+
+    <!-- Min quantity allowed toast message -->
+    <string name="minQuantityToast">Min quantity allowed is 0</string>
+
+    <!-- Name label for order summary -->
+    <string name="nameOrderSummary">Name: <xliff:g id="name" example="Amy">%s</xliff:g></string>
+
+    <!-- Add whipped cream: true or false -->
+    <string name="addWhippedCream">Add whipped cream? </string>
+
+    <!-- Add chocolate: true or false -->
+    <string name ="addChocolate">Add chocolate?</string>
+
+    <!-- Adds quantity label for order summary -->
+    <string name="quantityOrderSummary">Quantity : </string>
+
+    <!-- Adds total label for order summary -->
+    <string name="totalOrderSummary">Price: $"</string>
+
+    <!-- Adds thank you label for order summary -->
+    <string name="thankYouOrderSummary">Thank you!</string>
 </resources>

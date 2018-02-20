@@ -37,9 +37,6 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
-    int pricePerCup = 5;
-    int chocolateAdded = 2;
-    int whippedCreamAdded = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
     public void increment(View view) {
 
         // Creates a String to use in the Toast message that informs upper limit of quantity
-        String upperLimit = "Max quantity allowed is 100";
+        String upperLimit = getString(R.string.maxQuantityToast);
 
         // ensures the quantity value does not go above 100
         if (quantity < 100) {
@@ -127,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     public void decrement(View view) {
 
         // Creates a String to use in the Toast message that informs lower limit of quantity
-        String lowerLimit = "Lowest quantity allowed is 0";
+        String lowerLimit = getString(R.string.minQuantityToast);
 
         // ensures the quantity value does not go below 0
         if (quantity > 0) {
@@ -174,12 +171,12 @@ public class MainActivity extends AppCompatActivity {
      * @return priceMessage returns the order summary output to the program
      */
     private String createOrderSummary(int price, boolean addWhippedCream, boolean addChocolate, String nameText) {
-        String priceMessage = "Name: " + nameText;
-        priceMessage += "\nAdd whipped cream? " + addWhippedCream;
-        priceMessage += "\nAdd chocolate? " + addChocolate;
-        priceMessage += "\nQuantity : " + quantity;
-        priceMessage += "\nTotal Price: $" + price;
-        priceMessage += "\nThank you!";
+        String priceMessage = getString(R.string.nameOrderSummary, nameText);
+        priceMessage += "\n" + getString(R.string.addWhippedCream)+ addWhippedCream;
+        priceMessage += "\n" + getString(R.string.addChocolate) + addChocolate;
+        priceMessage += "\n" + getString(R.string.quantityOrderSummary)+ quantity;
+        priceMessage += "\n" + getString(R.string.totalOrderSummary)+ price;
+        priceMessage += "\n" + getString(R.string.thankYouOrderSummary);
         return priceMessage;
     }
 }

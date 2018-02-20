@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Just Java</string>
+    <string name="thankYouOrderSummary">Gracias!</string>
+    <string name="toppingsText">Ingredientes</string>
+    <string name="hintName">Nombre</string>
+    <string name="whippedCreamText">"crema batida "</string>
+    <string name="chocolateText">"chocolate "</string>
+    <string name="quantityText">cantidad</string>
+    <string name="orderText">orden</string>
+    <string name="maxQuantityToast">La cantidad máxima permitida es 100</string>
+    <string name="minQuantityToast">La cantidad mínima permitida es 0</string>
+    <string name="nameOrderSummary">Nombre:</string>
+    <string name="addWhippedCream">Añadir crema batida?</string>
+    <string name="addChocolate">Añadir chocolate?</string>
+    <string name="quantityOrderSummary">Cantidad:</string>
+    <string name="totalOrderSummary">Precio: $</string>
+</resources>
