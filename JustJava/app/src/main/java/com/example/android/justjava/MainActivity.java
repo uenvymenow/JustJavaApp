@@ -18,7 +18,9 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.example.android.justjava.R;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -43,14 +45,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-    /**
-     * This method displays the given text on the screen.
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
     }
 
     /**
@@ -99,10 +93,10 @@ public class MainActivity extends AppCompatActivity {
          */
         Intent orderSummaryIntent = new Intent(Intent.ACTION_SENDTO);
         orderSummaryIntent.setData(Uri.parse("mailto:")); // only email apps should handle this
-        orderSummaryIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {"uenvymenow@gmail.com"});
+        orderSummaryIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"uenvymenow@gmail.com"});
         orderSummaryIntent.putExtra(Intent.EXTRA_SUBJECT, subjectMessage);
         orderSummaryIntent.putExtra(Intent.EXTRA_TEXT, priceMessage);
-        if (orderSummaryIntent.resolveActivity(getPackageManager()) != null){
+        if (orderSummaryIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(orderSummaryIntent);
         }
     }
@@ -149,7 +143,8 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Calculates the price of the order
-     * @param addChocolate is whether or not the user wants chocolate topping
+     *
+     * @param addChocolate    is whether or not the user wants chocolate topping
      * @param addWhippedCream is whether or not the user wants whipped cream topping
      * @return total price
      */
@@ -184,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
         priceMessage += "\nAdd chocolate? " + addChocolate;
         priceMessage += "\nQuantity : " + quantity;
         priceMessage += "\nTotal Price: $" + price;
-        priceMessage +="\nThank you!";
+        priceMessage += "\nThank you!";
         return priceMessage;
     }
 }
