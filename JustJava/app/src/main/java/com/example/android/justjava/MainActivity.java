@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     int quantity = 0;
     int pricePerCup = 5;
+    int chocolateAdded = 2;
+    int whippedCreamAdded = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +108,33 @@ public class MainActivity extends AppCompatActivity {
      * Calculates the price of the order
      */
     private int calculatePrice() {
-        int price = quantity * pricePerCup;
+
+        // sets price integer
+        int price = 0;
+        /**
+         * checks to see if whipped cream topping checkbox is checked
+         * assigns true or false boolean value to hasWhippedCream
+         */
+        CheckBox checkedWhippedCream = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        boolean hasWhippedCream = checkedWhippedCream.isChecked();
+
+        /**
+         * checks to see if chocolate checkbox is checked
+         * assigns true or false boolean value to hasChocolate
+         */
+        CheckBox checkChocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        boolean hasChocolate = checkChocolate.isChecked();
+
+        if (hasChocolate == false && hasWhippedCream == false) {
+            price = quantity * pricePerCup;
+        } else if (hasChocolate == true && hasWhippedCream == false) {
+            price = quantity * (pricePerCup + chocolateAdded);
+        } else if (hasChocolate == false && hasWhippedCream == true) {
+            price = quantity * (pricePerCup + whippedCreamAdded);
+        } else {
+            price = quantity * (pricePerCup + whippedCreamAdded + chocolateAdded);
+        }
+
         return price;
     }
 
