@@ -9,6 +9,8 @@
 package com.example.android.justjava;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -89,8 +91,20 @@ public class MainActivity extends AppCompatActivity {
 
         int price = calculatePrice(hasWhippedCream, hasChocolate);
 
+        String subjectMessage = "JustJava order for " + nameEditText;
         String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, nameEditText);
-        displayMessage(priceMessage);
+
+        /**
+         * Creates an intent and fills out the information to send to email address along with the order summary
+         */
+        Intent orderSummaryIntent = new Intent(Intent.ACTION_SENDTO);
+        orderSummaryIntent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        orderSummaryIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {"uenvymenow@gmail.com"});
+        orderSummaryIntent.putExtra(Intent.EXTRA_SUBJECT, subjectMessage);
+        orderSummaryIntent.putExtra(Intent.EXTRA_TEXT, priceMessage);
+        if (orderSummaryIntent.resolveActivity(getPackageManager()) != null){
+            startActivity(orderSummaryIntent);
+        }
     }
 
     /**
@@ -100,17 +114,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Creates a String to use in the Toast message that informs upper limit of quantity
         String upperLimit = "Max quantity allowed is 100";
-        // Creates an int to set Toast length
-        int duration = Toast.LENGTH_SHORT;
-        // Gets application context
-        Context context = getApplicationContext();
 
         // ensures the quantity value does not go above 100
         if (quantity < 100) {
             quantity = quantity + 1;
         } else {
-            Toast toast = Toast.makeText(context, upperLimit, duration);
-            toast.show();
+            // Creates a toast message with lowerLimit quantity displayed and exits control flow
+            Toast.makeText(this, upperLimit, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -124,17 +134,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Creates a String to use in the Toast message that informs lower limit of quantity
         String lowerLimit = "Lowest quantity allowed is 0";
-        // Creates an int to set Toast length
-        int duration = Toast.LENGTH_SHORT;
-        // Gets application context
-        Context context = getApplicationContext();
 
         // ensures the quantity value does not go below 0
         if (quantity > 0) {
             quantity = quantity - 1;
         } else {
-            Toast toast = Toast.makeText(context, lowerLimit, duration);
-            toast.show();
+            // Creates a toast message with lowerLimit quantity displayed and exits control flow
+            Toast.makeText(this, lowerLimit, Toast.LENGTH_SHORT).show();
             return;
         }
 
