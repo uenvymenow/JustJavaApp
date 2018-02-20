@@ -60,13 +60,13 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = calculatePrice();
+
 
         /**
          * Gets name input from EditText view
          * assigns name to nameEditText
          */
-        EditText name_Edit_Text = (EditText) findViewById(R.id.name_Edit_Text);
+        EditText name_Edit_Text = findViewById(R.id.name_Edit_Text);
         String nameEditText = name_Edit_Text.getText().toString();
 
 
@@ -74,15 +74,17 @@ public class MainActivity extends AppCompatActivity {
          * checks to see if whipped cream topping checkbox is checked
          * assigns true or false boolean value to hasWhippedCream
          */
-        CheckBox checkedWhippedCream = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        CheckBox checkedWhippedCream = findViewById(R.id.whipped_cream_checkbox);
         boolean hasWhippedCream = checkedWhippedCream.isChecked();
 
         /**
          * checks to see if chocolate checkbox is checked
          * assigns true or false boolean value to hasChocolate
          */
-        CheckBox checkChocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        CheckBox checkChocolate = findViewById(R.id.chocolate_checkbox);
         boolean hasChocolate = checkChocolate.isChecked();
+
+        int price = calculatePrice(hasWhippedCream, hasChocolate);
 
         String priceMessage = createOrderSummary(price, hasWhippedCream, hasChocolate, nameEditText);
         displayMessage(priceMessage);
@@ -106,36 +108,27 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Calculates the price of the order
+     * @param addChocolate is whether or not the user wants chocolate topping
+     * @param addWhippedCream is whether or not the user wants whipped cream topping
+     * @return total price
      */
-    private int calculatePrice() {
+    private int calculatePrice(boolean addWhippedCream, boolean addChocolate) {
 
         // sets price integer
-        int price = 0;
-        /**
-         * checks to see if whipped cream topping checkbox is checked
-         * assigns true or false boolean value to hasWhippedCream
-         */
-        CheckBox checkedWhippedCream = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
-        boolean hasWhippedCream = checkedWhippedCream.isChecked();
+        int price = 5;
 
-        /**
-         * checks to see if chocolate checkbox is checked
-         * assigns true or false boolean value to hasChocolate
-         */
-        CheckBox checkChocolate = (CheckBox) findViewById(R.id.chocolate_checkbox);
-        boolean hasChocolate = checkChocolate.isChecked();
-
-        if (hasChocolate == false && hasWhippedCream == false) {
-            price = quantity * pricePerCup;
-        } else if (hasChocolate == true && hasWhippedCream == false) {
-            price = quantity * (pricePerCup + chocolateAdded);
-        } else if (hasChocolate == false && hasWhippedCream == true) {
-            price = quantity * (pricePerCup + whippedCreamAdded);
-        } else {
-            price = quantity * (pricePerCup + whippedCreamAdded + chocolateAdded);
+        // Add $1 if user wants whipped cream
+        if (addWhippedCream) {
+            price = price + 1;
         }
 
-        return price;
+        // Add $2 if user wants chocolate
+        if (addChocolate) {
+            price = price + 2;
+        }
+
+        // Calculate the total order price by multiplying quantity by price
+        return quantity * price;
     }
 
     /**
@@ -149,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         priceMessage += "\nAdd whipped cream? " + addWhippedCream;
         priceMessage += "\nAdd chocolate? " + addChocolate;
         priceMessage += "\nQuantity : " + quantity;
-        priceMessage += "\nTotal Price: $" + calculatePrice();
+        priceMessage += "\nTotal Price: $" + price;
         priceMessage +="\nThank you!";
         return priceMessage;
     }
